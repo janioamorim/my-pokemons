@@ -1,14 +1,19 @@
-import React from 'react';
-
-
+import React, { useState } from 'react';
 import { Container } from './styles';
 
+import { Pokeball } from './../../assets/patterns';
+import InputSearch from './../../components/InputSearch';
 
-const Home: React.FC = () => {  
+
+const Home: React.FC = () => {
+
+  const [pokemonSearch, setPokemonSearch] = useState('');
 
   return (
     <Container>
-      <p>Home</p>      
+      <Pokeball />
+      <h1>My Pokemons</h1>
+      <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />  
     </Container>
   );
 };
