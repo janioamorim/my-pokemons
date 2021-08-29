@@ -75,3 +75,15 @@ export const Pokemons = styled.div`
     gap: 50px;
   `};
 `;
+export const LogoTitle = styled.div`
+  display: flex;
+  align-items: center;
+
+  > svg {
+    margin-right: 10px;   
+    path {
+      fill: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+`;

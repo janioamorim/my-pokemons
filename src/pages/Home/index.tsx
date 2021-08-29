@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Container, Pokemons } from './styles';
+import { Container, Pokemons, LogoTitle } from './styles';
 
 import InputSearch from './../../components/InputSearch';
 import CardPokemon from './../../components/CardPokemon';
 
 import api from '../../services/api';
+
+import { Pokeball } from '../../assets/patterns';
 
 interface PokemonProps {
   id: string;
@@ -68,7 +70,10 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <h1>My Pokemons</h1>
+      <LogoTitle>
+        <Pokeball />
+        <h1>My Pokemons</h1>
+      </LogoTitle>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
 
       <Pokemons>
