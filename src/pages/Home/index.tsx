@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Container, Pokemons } from './styles';
 
-import { Pokeball } from './../../assets/patterns';
 import InputSearch from './../../components/InputSearch';
 import CardPokemon from './../../components/CardPokemon';
 
@@ -34,8 +33,7 @@ const Home: React.FC = () => {
   }, [handlePokemonsListDefault]);
 
   return (
-    <Container>
-      <Pokeball />
+    <Container>     
       <h1>My Pokemons</h1>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
 

@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
   border: 2px solid
     ${({ isFocused, theme }) =>
-      isFocused ? theme.colors.background.pressedInput : 'transparent'};
+      isFocused ? theme.colors.background.pressedInput : '#0005'};
 
   svg {
     width: 20px;
@@ -35,7 +35,7 @@ export const Container = styled.div<ContainerProps>`
     color: ${({ theme }) => theme.colors.text.gray};
     border: none;
     background: transparent;
-    text-align: center;
+    text-align: center;    
   }
 
   ${media.lessThan('medium')`
