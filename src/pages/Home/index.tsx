@@ -16,6 +16,7 @@ const Home: React.FC = () => {
 
   const [pokemonSearch, setPokemonSearch] = useState('');
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
+  const [pokemonsOffsetApi, setPokemonsOffsetApi] = useState(NUMBER_POKEMONS);
 
   const handlePokemonsListDefault = useCallback(async () => {
     const response = await api.get('/pokemon', {
@@ -27,6 +28,21 @@ const Home: React.FC = () => {
     
     setPokemons(response.data.results);
   }, []);
+
+  const handleMorePokemons = useCallback(
+    async offset => {
+      const response = await api.get(`/pokemon`, {
+        params: {
+          limit: NUMBER_POKEMONS,
+          offset,
+        },
+      });
+
+      setPokemons(state => [...state, ...response.data.results]);
+      setPokemonsOffsetApi(state => state + NUMBER_POKEMONS);
+    },
+    [NUMBER_POKEMONS],
+  );
 
   useEffect(() => {
     handlePokemonsListDefault();
@@ -42,6 +58,15 @@ const Home: React.FC = () => {
           <CardPokemon key={pokemon.name} name={pokemon.name} />
         ))}
       </Pokemons>
+
+      {pokemonSearch.length <= 2 && (
+        <button
+          type="button"
+          onClick={() => handleMorePokemons(pokemonsOffsetApi)}
+        >
+          MAIS
+        </button>
+      )}
     </Container>
   );
 };

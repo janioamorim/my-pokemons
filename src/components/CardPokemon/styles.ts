@@ -26,8 +26,6 @@ export const Container = styled(Link)`
     -webkit-transition: -webkit-filter 400ms ease;
     transition: all ease 0.4s;
   }
-
-  
 `;
 
 export const Pokemon = styled.div`
@@ -83,13 +81,13 @@ export const ContainerImg = styled.div`
   position: absolute;
   left: 10px;
   top: 5px;
+
   &:hover {
     > img {
       transition: all ease 0.7s;
       left: 70px;
     }
   }
- 
 `;
 
 export const PokemonType = styled.div`
@@ -105,7 +103,7 @@ export const PokemonType = styled.div`
   & + div {
     margin-left: 10px;
   }
- 
+
   span {
     margin-left: 8px;
 

@@ -35,16 +35,15 @@ export const Container = styled.div`
     font-size: 20px;
     color: ${({ theme }) => theme.colors.text.white};
 
-    width: 50%;
-    height: 50px;
-    background: #5a92a5;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    background: #0174DF;
     margin: 30px auto 0;
 
     outline: 0;
-    border: 0;
-    border-radius: 4px;
+    border: 0;    
     opacity: 0.8;
-
     transition: all linear 0.2s;
 
     &:hover {
