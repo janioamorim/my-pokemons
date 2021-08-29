@@ -13,6 +13,7 @@ interface PokemonProps {
 
 const Home: React.FC = () => {
   const NUMBER_POKEMONS = 9;
+  const NUMBER_MAX_POKEMONS_API = 500;
 
   const [pokemonSearch, setPokemonSearch] = useState('');
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
@@ -24,8 +25,8 @@ const Home: React.FC = () => {
         limit: NUMBER_POKEMONS,
       },
     });
-    console.log("response", response);
-    
+    console.log('response', response);
+
     setPokemons(response.data.results);
   }, []);
 
@@ -44,12 +45,29 @@ const Home: React.FC = () => {
     [NUMBER_POKEMONS],
   );
 
+  const handleSearchPokemons = useCallback(async () => {
+    const response = await api.get(`/pokemon?limit=${NUMBER_MAX_POKEMONS_API}`);
+
+    setPokemonSearch(pokemonSearch.toLocaleLowerCase());
+
+    const pokemonsSearch = response.data.results.filter(
+      ({ name }: PokemonProps) => name.includes(pokemonSearch),
+    );
+    setPokemons(pokemonsSearch);
+  }, [pokemonSearch]);
+
   useEffect(() => {
-    handlePokemonsListDefault();
-  }, [handlePokemonsListDefault]);
+    const isSearch = pokemonSearch.length >= 2;
+
+    if (isSearch) {
+      handleSearchPokemons();
+    } else {
+      handlePokemonsListDefault();
+    }
+  }, [pokemonSearch, handlePokemonsListDefault, handleSearchPokemons]);
 
   return (
-    <Container>     
+    <Container>
       <h1>My Pokemons</h1>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
 
